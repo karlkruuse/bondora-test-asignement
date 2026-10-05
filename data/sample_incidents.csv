@@ -1,0 +1,13 @@
+inc_id,date,severity,summary,root_cause,minutes_to_detect,minutes_to_resolve
+INC-001,2026-05-15,P1,Meta audience uploads failing across all countries,Meta deprecated API v22 with 7-day notice; no version pinning in client,1440,360
+INC-002,2026-05-08,P2,Rudderstack ingest missed 4 hours of events,Source-side schema change added a non-nullable column; ingestion silently dropped batch,720,180
+INC-003,2026-04-22,P1,raw_transfer empty after FULL_LOAD overwrite,Source query timeout returned 0 rows, framework overwrote production table,90,45
+INC-004,2026-04-07,P2,Credit files queries taking 80+ min blocking dashboards,Table never optimized after 200M-row backfill,2880,30
+INC-005,2026-03-20,P3,Bing cost missing from DDPR for DK,Bing API auth refresh job not migrated to new credential store,4320,120
+INC-006,2026-03-17,P2,Martin Sulg cannot access Databricks,New employee provisioning skipped IdP group sync,180,60
+INC-007,2026-03-13,P2,Cluster cold start added 5 min to every Job,Job clusters not using cluster pools; nightly batch window blown,720,90
+INC-008,2026-03-04,P2,target_circle_integration_public.request_log not updating,Job silently missing from orchestrator after Bruno re-organised jobs,5760,30
+INC-009,2026-02-15,P1,KPMG audit found shared admin account with no MFA,Legacy service account with admin role created in 2022,N/A,2880
+INC-010,2026-02-09,P2,Datahub credentials expired during ingestion,No alerting on credential expiry; rotation missed by 1 day,30,45
+INC-011,2026-01-13,P1,sobralaen.dbo.t ingestion produced corrupt data,Schema drift; type cast silently changed VARCHAR to NULL,1440,240
+INC-012,2025-12-22,P2,Rudderstack import inconsistent for 2 weeks,Watermark logic used source-side timestamp but source had clock skew,N/A,360

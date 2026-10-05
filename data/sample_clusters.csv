@@ -1,0 +1,9 @@
+cluster_id,cluster_name,type,node_type,min_workers,max_workers,autoscale,runtime,idle_terminate_min,monthly_cost_eur,notes
+C01,job_cluster_small,job,Standard_DS3_v2,2,4,TRUE,14.3 LTS,10,1800,
+C02,job_cluster_large,job,Standard_DS5_v2,4,8,TRUE,14.3 LTS,10,4200,
+C03,all_purpose_cluster,interactive,Standard_DS4_v2,2,8,TRUE,13.3 LTS,60,3600,used for dbt and ad-hoc; high idle time
+C04,gpu_cluster,interactive,Standard_NC6s_v3,1,4,TRUE,13.3 ML GPU,30,2500,DS team, often idle weekends
+C05,sql_warehouse_small,sql,N/A,1,1,FALSE,2024.40,N/A,180,for analyst ad-hoc queries
+C06,sql_warehouse_xl,sql,N/A,1,4,TRUE,2024.40,N/A,4800,backs AI agent query service, 24x7
+C07,bcordeiro_personal,interactive,Standard_DS3_v2,1,2,TRUE,14.3 LTS,120,540,owned by former employee, still running
+C08,legacy_etl_cluster,interactive,Standard_DS3_v2,1,4,TRUE,11.3 LTS,never,1100,runtime out of support since 2025-12; never auto-terminates

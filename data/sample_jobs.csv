@@ -1,0 +1,31 @@
+job_id,job_name,owner,cluster_type,schedule,last_status,p95_runtime_min,monthly_cost_eur,uses_pat,notes
+J001,raw_loan_application_ingest,bcordeiro@example.com,job_cluster_small,0 5 * * *,SUCCESS,12,180,FALSE,
+J002,raw_transfer_ingest,bcordeiro@example.com,job_cluster_small,0 5 * * *,SUCCESS,8,140,FALSE,
+J003,raw_amplitude_ingest,bcordeiro@example.com,job_cluster_small,0 4 * * *,FLAKY,38,420,FALSE,intermittent timeouts last 3 weeks
+J004,clevertap_user_sync,bcordeiro@example.com,all_purpose_cluster,0 6 * * *,SUCCESS,22,310,TRUE,uses PAT scheduled to expire 2026-06-30
+J005,google_ads_audience_upload_dk,marketing-svc,job_cluster_small,0 7 * * *,SUCCESS,9,95,TRUE,
+J006,google_ads_audience_upload_ee,marketing-svc,job_cluster_small,0 7 * * *,SUCCESS,11,98,TRUE,
+J007,google_ads_audience_upload_fi,marketing-svc,job_cluster_small,0 7 * * *,SUCCESS,10,97,TRUE,
+J008,google_ads_audience_upload_de,marketing-svc,job_cluster_small,0 7 * * *,SUCCESS,12,102,TRUE,
+J009,google_ads_audience_upload_es,marketing-svc,job_cluster_small,0 7 * * *,SUCCESS,11,99,TRUE,
+J010,google_ads_audience_upload_nl,marketing-svc,job_cluster_small,0 7 * * *,SUCCESS,11,99,TRUE,
+J011,meta_audience_upload_all,marketing-svc,job_cluster_small,0 7 * * *,FAIL,45,260,TRUE,API v22 deprecated, returns 410 since 2026-05-15
+J012,criteo_audience_upload_all,marketing-svc,job_cluster_small,0 7 * * *,SUCCESS,18,140,TRUE,
+J013,bing_audience_upload_all,marketing-svc,job_cluster_small,0 7 * * *,SUCCESS,12,110,TRUE,
+J014,mssql_sobralaen_full_load,bcordeiro@example.com,job_cluster_large,0 2 * * 0,SUCCESS,180,2400,FALSE,weekly full reload of 80GB table
+J015,dbt_dwh_prod_daily,dwh-svc,all_purpose_cluster,0 8 * * *,SUCCESS,55,890,FALSE,
+J016,dbt_dwh_prod_hourly,dwh-svc,all_purpose_cluster,0 * * * *,SUCCESS,8,520,FALSE,
+J017,tuum_daily_diff_load,bcordeiro@example.com,job_cluster_small,0 3 * * *,SUCCESS,28,340,FALSE,
+J018,rudderstack_event_ingest,bcordeiro@example.com,job_cluster_small,*/15 * * * *,SUCCESS,6,1200,FALSE,
+J019,eventhub_loan_app_created,bcordeiro@example.com,job_cluster_small,*/5 * * * *,SUCCESS,3,720,FALSE,
+J020,scoring_model_pd_daily,data-science-svc,gpu_cluster,0 9 * * *,SUCCESS,40,1850,FALSE,
+J021,scoring_model_xgb_retrain,data-science-svc,gpu_cluster,0 9 * * 0,SUCCESS,210,650,FALSE,
+J022,tableau_extract_refresh,dwh-svc,all_purpose_cluster,*/30 * * * *,FAIL,4,180,TRUE,Tableau PAT expired 2026-05-19
+J023,unknown_legacy_etl_2023,unknown,all_purpose_cluster,0 11 * * *,SUCCESS,18,420,FALSE,owner left company 2024-08
+J024,ds_sandbox_overnight,jdoe@example.com,job_cluster_large,0 22 * * *,SUCCESS,360,3200,FALSE,DS exploratory job runs every night
+J025,gdpr_export_runner,bcordeiro@example.com,job_cluster_small,manual,SUCCESS,15,30,FALSE,
+J026,fintonic_sftp_share,bcordeiro@example.com,job_cluster_small,0 8 * * *,SUCCESS,9,95,FALSE,
+J027,seon_fraud_poc,bcordeiro@example.com,job_cluster_small,0 6 * * *,SUCCESS,12,140,FALSE,POC running for 6 months
+J028,credit_files_aggregation,bcordeiro@example.com,job_cluster_large,0 4 * * *,SUCCESS,95,1800,FALSE,query takes 80+ min, table not optimized
+J029,ai_agent_query_service,platform-svc,sql_warehouse_xl,continuous,SUCCESS,N/A,4800,FALSE,new in 2026-Q1, 24x7 serverless warehouse
+J030,monthly_invoice_export,dwh-svc,job_cluster_small,0 6 1 * *,SUCCESS,22,18,FALSE,

@@ -1,0 +1,18 @@
+principal,principal_type,role,catalogs,last_login,mfa_enabled,notes
+bcordeiro@example.com,user,workspace_admin,"main,analytics,raw,observability,archive",2026-05-19,TRUE,former employee, last login 2 days before departure
+admin,user,workspace_admin,"main,analytics,raw,observability,archive",2026-05-20,FALSE,shared admin account; created 2022
+mbaur@example.com,user,workspace_admin,"main,analytics,raw,observability,archive",2026-05-21,TRUE,
+dushank@example.com,user,workspace_user,"main,analytics,raw",2026-05-21,TRUE,
+msulg@example.com,user,workspace_user,"main,analytics",2026-05-20,TRUE,
+nyaroshenka@example.com,user,workspace_user,"main,analytics",2026-05-20,TRUE,name typo (was Nastassia)
+data-science-svc,service_principal,workspace_user,"main,analytics,raw,data_science",2026-05-21,N/A,
+dwh-svc,service_principal,workspace_user,"main,analytics,raw",2026-05-21,N/A,
+marketing-svc,service_principal,workspace_user,"analytics,marketing",2026-05-21,N/A,
+platform-svc,service_principal,workspace_admin,"main,analytics,raw,observability,archive,data_science,marketing",2026-05-21,N/A,used by AI agents; admin role
+feldera_srv,service_principal,workspace_user,"main,analytics,raw,feature_store",2026-05-21,N/A,access granted to all tables on all catalogs in AN-3638
+srv_data_platform_databricks_tableau,service_principal,workspace_user,"analytics",2026-05-21,N/A,
+ailegacy@example.com,user,workspace_user,"main,analytics,raw",2024-09-12,FALSE,user left 2024
+jdoe@example.com,user,workspace_user,"main,analytics,data_science",2026-05-19,TRUE,
+risk-analyst-1@example.com,user,workspace_user,"main,analytics",2026-05-20,TRUE,unmasking rights granted ad-hoc (AN-3158)
+risk-analyst-2@example.com,user,workspace_user,"main,analytics",2026-05-20,TRUE,unmasking rights granted ad-hoc (AN-3158)
+ai-agent-readonly,service_principal,workspace_user,"main,analytics",2026-05-21,N/A,used by Claude/internal agents, ALL queries via this SP
