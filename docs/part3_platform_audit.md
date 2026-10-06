@@ -45,5 +45,43 @@ Three questions you'd ask your manager or a colleague before you'd actually star
 
 ## Your audit starts here
 
-> Write below this line.
+### Section 1: Three highest-priority risks
 
+- **Privileged access is not controlled tightly enough.** `sample_access.csv` lists a shared `admin` workspace-admin account without MFA (INC-009: P1 audit finding), a former employee with workspace-admin access, and a former employee still owning many jobs (`sample_jobs.csv`, e.g. J001-J004). This creates account misuse and operational continuity risks. 
+    **First action:** 
+    - disable stale human identities
+    - remove the shared account
+    - require MFA/SSO for administrators
+    - transfer job ownership and credentials to governed service principals
+
+- **Production ingestion can silently destroy or corrupt data.** INC-003 records an empty source result overwriting `raw_transfer`; INC-011 records schema drift turning values into NULL; INC-002 and INC-012 show silent drops and unreliable watermarking. These indicate missing data-quality gates, not isolated source issues. 
+    **First action:** 
+    - block destructive writes unless schema and row-count/freshness checks pass
+    - quarantine unexpected input and alert before advancing watermarks
+
+- **Critical jobs fail or disappear without timely detection or clear ownership.** J011's Meta upload fails because API v22 was deprecated, while INC-001 took 24 hours to detect; INC-008 took four days to detect a job missing from orchestration. J023 has an unknown owner, and J022 is failing on an expired PAT. 
+    **First action:** 
+    - inventory production jobs and dependencies
+    - assign accountable owners
+    - freshness/completion alerts
+    - prioritize Meta API recovery and credential rotation.
+
+### Section 2: Three cost or performance wins
+
+- **Right-size the nightly sandbox.** J024 (`ds_sandbox_overnight`) costs **€3,200/month** and runs six hours every night on the large job cluster. Confirm usage with its owner, then move it to on-demand/manual or a smaller, bounded schedule; this is the largest obvious saving if overnight execution is not required.
+
+- **Retire or modernize wasteful always-on clusters.** C07 costs **€540/month** and belongs to a former employee; C08 costs **€1,100/month**, never auto-terminates, and runs unsupported DBR 11.3. Confirm no dependencies, then terminate C07 and migrate C08 workloads to a supported job cluster with auto-termination. Potential avoidable spend: **€1,640/month**, plus reduced operational risk.
+
+- **Optimize the known slow data path.** J028 (`credit_files_aggregation`) costs **€1,800/month**, takes 95 minutes, and notes an unoptimized table; INC-004 reports 80+ minute queries blocking dashboards. Profile the query, optimize/compact the table and review its partitioning, then compare runtime and dashboard latency before/after. This targets both compute duration and user impact.
+
+### Section 3: AI-agent readiness
+
+Make a **governed agent-serving boundary** the structural change before query load triples. `sample_access.csv` says all Claude/internal-agent queries use the shared `ai-agent-readonly` principal; `platform-svc` is a workspace admin with access to many catalogs and is also used by the agent query service. This prevents reliable per-agent attribution and gives agent traffic more reach than it needs.
+
+Create a distinct service principal per agent/application, grant read-only access to approved curated Unity Catalog views, and apply row filters/column masks to sensitive data. Route queries through a dedicated SQL warehouse with agent/team workload tags, query timeouts, concurrency limits, and autoscaling. C06 (`sql_warehouse_xl`) currently backs the service continuously at **€4,800/month**; first establish per-agent query volume, latency, failures, and attributed cost, then size capacity from measured demand. Alert on access-denial spikes, abnormal query volume, latency, and budget thresholds.
+
+### Section 4: Questions before committing
+
+1. Which datasets are formally approved for agents, and what sensitive fields or row-level restrictions must be enforced?
+2. Who owns each job, integration, and service principal—including the former employee's jobs—and what are the business-critical recovery/freshness SLAs?
+3. What budget and latency targets should agent workloads meet, and can we change schedules or move workloads (for example J024) without disrupting users?

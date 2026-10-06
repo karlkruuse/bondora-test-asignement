@@ -6,7 +6,7 @@ Welcome. This repo contains three exercises that mirror the kind of work you'll 
 
 You have two options. Both work, pick whichever you prefer.
 
-**Option A: GitHub Codespaces (zero install).** Click `Code` -> `Codespaces` -> `Create codespace on main`. Wait \~2 minutes for the container to build. Open `notebooks/part1_ingestion_debug.ipynb`, pick the Python kernel, you're done.
+**Option A: GitHub Codespaces (zero install).** Click `Code` -> `Codespaces` -> `Create codespace on main`. Wait \~2 minutes for the container to build. The container installs Java 17 for local PySpark. Open `notebooks/part1_ingestion_debug.ipynb`, pick the Python kernel, you're done. If you already have a codespace, rebuild its container to apply configuration changes (`Codespaces: Rebuild Container` from the command palette).
 
 **Option B: Local with VS Code + Dev Containers.** Clone the repo, open in VS Code, accept the "Reopen in Container" prompt. Requires Docker.
 
